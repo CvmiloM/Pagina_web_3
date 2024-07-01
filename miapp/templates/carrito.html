@@ -26,6 +26,9 @@
             <a class="nav-link" href="{% url 'lista_productos' %}">Productos</a>
           </li>
           {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contacto</a>
+          </li>
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'ver_carrito' %}"><i class="fas fa-shopping-cart"></i> Carrito</a>
           </li>
@@ -38,12 +41,14 @@
     <ul id="carrito" class="list-group mb-3">
       <!-- Productos del carrito se mostrarán aquí -->
     </ul>
+    {% if user.is_staff %}
     <div class="text-right mb-3">
       <a href="{% url 'lista_compras' %}" class="btn btn-secondary">Ver Lista de Compras</a>
     </div>
     <div id="detalle-compra-btn" class="text-right mb-3" style="display: none;">
       <a id="detalle-compra-link" href="#" class="btn btn-info">Ver Detalle de Compra</a>
     </div>
+    {% endif %}
     <div class="text-right">
       <button id="guardar-carrito" class="btn btn-primary">Guardar Carrito</button>
     </div>
@@ -113,10 +118,12 @@
             localStorage.removeItem('carrito');
             carrito = [];
             renderCarrito();
+            {% if user.is_staff %}
             const detalleCompraBtn = document.getElementById('detalle-compra-btn');
             const detalleCompraLink = document.getElementById('detalle-compra-link');
             detalleCompraLink.href = `{% url 'detalle_compra' 0 %}`.replace('0', data.compra_id);
             detalleCompraBtn.style.display = 'block';
+            {% endif %}
           } else {
             alert(`Error al guardar el carrito: ${data.error}`);
           }
