@@ -46,68 +46,6 @@ Ejecutar el Servidor
 Para iniciar el servidor de desarrollo, utiliza el siguiente comando: python manage.py runserver
 
 
-
-Aquí tienes un ejemplo de cómo podrías decorar tu README.md en GitHub para tu proyecto, incluyendo todos los pasos necesarios para configurar el entorno e iniciar el servidor:
-
-markdown
-Copiar código
-# Mi Tienda D - Proyecto Django
-
-¡Bienvenido a Mi Tienda D! Este proyecto es una tienda en línea creada con Django. Aquí encontrarás toda la información necesaria para configurar y ejecutar este proyecto en tu máquina local.
-
-## Requisitos Previos
-
-Asegúrate de tener instalados los siguientes requisitos antes de comenzar:
-
-- Python 3.6 o superior
-- Django
-- Pillow
-
-## Instalación
-
-Sigue estos pasos para configurar el proyecto:
-
-1. **Clona el repositorio:**
-
-   ```bash
-   git clone https://github.com/tu_usuario/tu_repositorio.git
-   cd tu_repositorio
-Crea y activa un entorno virtual:
-
-bash
-Copiar código
-python -m venv env
-source env/bin/activate  # En Windows usa `env\Scripts\activate`
-Instala las dependencias necesarias:
-
-bash
-Copiar código
-pip install django
-pip install pillow
-Configuración
-Configura las variables de entorno:
-
-Crea un archivo .env en el directorio raíz del proyecto y añade tus variables de entorno según sea necesario.
-
-Realiza las migraciones:
-
-bash
-Copiar código
-python manage.py makemigrations
-python manage.py migrate
-Crea un superusuario:
-
-bash
-Copiar código
-python manage.py createsuperuser
-Ejecutar el Servidor
-Para iniciar el servidor de desarrollo, utiliza el siguiente comando:
-
-bash
-Copiar código
-python manage.py runserver
-Una vez iniciado, abre tu navegador y navega a http://127.0.0.1:8000/ para ver la aplicación en acción.
-
 Funcionalidades
 Usuarios Administradores
 Ver y crear productos
@@ -127,64 +65,7 @@ Si tienes alguna pregunta o sugerencia, no dudes en contactarme a través de ca.
 
 Claro, aquí tienes el README.md actualizado con la sección de colaboradores:
 
-markdown
-Copiar código
-# Mi Tienda D - Proyecto Django
 
-¡Bienvenido a Mi Tienda D! Este proyecto es una tienda en línea creada con Django. Aquí encontrarás toda la información necesaria para configurar y ejecutar este proyecto en tu máquina local.
-
-## Requisitos Previos
-
-Asegúrate de tener instalados los siguientes requisitos antes de comenzar:
-
-- Python 3.6 o superior
-- Django
-- Pillow
-
-## Instalación
-
-Sigue estos pasos para configurar el proyecto:
-
-1. **Clona el repositorio:**
-
-   ```bash
-   git clone https://github.com/tu_usuario/tu_repositorio.git
-   cd tu_repositorio
-Crea y activa un entorno virtual:
-
-bash
-Copiar código
-python -m venv env
-source env/bin/activate  # En Windows usa `env\Scripts\activate`
-Instala las dependencias necesarias:
-
-bash
-Copiar código
-pip install django
-pip install pillow
-Configuración
-Configura las variables de entorno:
-
-Crea un archivo .env en el directorio raíz del proyecto y añade tus variables de entorno según sea necesario.
-
-Realiza las migraciones:
-
-bash
-Copiar código
-python manage.py makemigrations
-python manage.py migrate
-Crea un superusuario (opcional):
-
-bash
-Copiar código
-python manage.py createsuperuser
-Ejecutar el Servidor
-Para iniciar el servidor de desarrollo, utiliza el siguiente comando:
-
-bash
-Copiar código
-python manage.py runserver
-Una vez iniciado, abre tu navegador y navega a http://127.0.0.1:8000/ para ver la aplicación en acción.
 
 ## Colaboradores
 
