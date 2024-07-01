@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda en línea</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'index' %}">Mi Tienda D</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+          </li>
+          {% if user.is_authenticated and user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_productos' %}">Productos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'crear_producto' %}">Crear Producto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_usuarios' %}">Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'crear_usuario' %}">Crear Usuario</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'ver_carrito' %}"><i class="fas fa-shopping-cart"></i> Carrito</a>
+          </li>
+          <li class="nav-item">
+            {% if user.is_authenticated %}
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link nav-link" style="padding: 0; border: none; background: none;">Cerrar sesión</button>
+              </form>
+            {% else %}
+              <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header class="jumbotron jumbotron-fluid bg-primary text-white text-center">
+    <div class="container">
+      <h1 class="display-4">Bienvenidos a Mi Tienda D</h1>
+      <p class="lead">Encuentra los mejores productos aquí</p>
+    </div>
+  </header>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col">
+        <h2>Productos</h2>
+        <div class="card-deck">
+          {% for producto in productos %}
+          <div class="card mb-4">
+            {% if producto.imagen %}
+            <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+            {% else %}
+            <img src="https://via.placeholder.com/300" class="card-img-top" alt="{{ producto.nombre }}">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ producto.nombre }}</h5>
+              <p class="card-text">{{ producto.descripcion }}</p>
+              <p class="card-text"><strong>${{ producto.precio }}</strong></p>
+              <button class="btn btn-primary agregar-carrito" data-id="{{ producto.id }}">Agregar al carrito</button>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="bg-dark text-white mt-5 p-4 text-center">
+    <p class="mb-0">&copy; 2024 Mi Tienda D. Todos los derechos reservados.</p>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrap.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+      document.querySelectorAll('.agregar-carrito').forEach(button => {
+        button.addEventListener('click', () => {
+          const id = button.getAttribute('data-id');
+          const nombre = button.closest('.card').querySelector('.card-title').textContent;
+          const precio = button.closest('.card').querySelector('strong').textContent.replace('$', '');
+          const producto = { id, nombre, precio, cantidad: 1 };
+
+          const index = carrito.findIndex(item => item.id === id);
+          if (index === -1) {
+            carrito.push(producto);
+          } else {
+            carrito[index].cantidad += 1;
+          }
+          
+          localStorage.setItem('carrito', JSON.stringify(carrito));
+          alert(`${nombre} agregado al carrito`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

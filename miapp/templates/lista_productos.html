@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Productos</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+</head>
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'index' %}">Mi Tienda D</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'lista_productos' %}">Productos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'ver_carrito' %}"><i class="fas fa-shopping-cart"></i> Carrito</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col">
+        <h1 class="text-center">Lista de Productos</h1>
+        <div class="text-right mb-3">
+          <a href="{% url 'crear_producto' %}" class="btn btn-success">Crear Producto</a>
+        </div>
+        <ul class="list-group">
+          {% for producto in productos %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>{{ producto.nombre }} - ${{ producto.precio }}</span>
+            <span>
+              <a href="{% url 'editar_producto' producto.id %}" class="btn btn-primary btn-sm mr-2">Editar</a>
+              <a href="{% url 'eliminar_producto' producto.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <footer class="bg-dark text-white mt-5 p-4 text-center">
+    <p class="mb-0">&copy; 2024 Mi Tienda D. Todos los derechos reservados.</p>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

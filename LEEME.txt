@@ -1,0 +1,52 @@
+IMPORTANTE:
+tener instalado Python
+y la extensión en el visual
+
+
+en la terminal colocar:
+
+ python -m venv env (esto para crear un entorno virtual)
+.\env\Scripts\actívate (con esto lo activamos)
+ pip install django (le instalamos django)
+
+
+Crear un Proyecto Django:
+
+En la terminal, dentro de la carpeta de tu proyecto, crea un nuevo proyecto Django:
+django-admin startproject duoc_proyecto
+cd duoc_proyecto
+
+
+Crear una Aplicación Django:
+
+Dentro del proyecto, crea una nueva aplicación:
+python manage.py startapp miapp
+
+
+							Iniciar el Servidor de Desarrollo de Django
+
+Migrar la Base de Datos:
+
+En la terminal, ejecuta las migraciones iniciales: python manage.py migrate
+
+Iniciar el Servidor de Desarrollo:
+
+Inicia el servidor de desarrollo de Django: python manage.py runserver
+
+cuando lo ejecutemos aparece algo asi:
+
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 22, 2024 - 23:11:17
+Django version 5.0.6, using settings 'duoc_proyecto.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+
+y con este http://127.0.0.1:8000/ entramos
+
+
+
+instalar : pip install Pillow
